@@ -1,0 +1,301 @@
+- 
+  type:       PullRequestEvent
+  payload: 
+    number:       132
+    pull_request: 
+      number:              132
+      assignee:            null
+      closed_at:           2013-01-11T16:47:49Z
+      review_comments:     2
+      title:               Issues 10-01
+      merged_by: 
+        gravatar_id:         1cf2cb10c2243ffbb8c4965524e611ee
+        followers_url:       https://api.github.com/users/coatezy/followers
+        received_events_url: https://api.github.com/users/coatezy/received_events
+        following_url:       https://api.github.com/users/coatezy/following
+        id:                  2954283
+        gists_url:           https://api.github.com/users/coatezy/gists{/gist_id}
+        organizations_url:   https://api.github.com/users/coatezy/orgs
+        repos_url:           https://api.github.com/users/coatezy/repos
+        url:                 https://api.github.com/users/coatezy
+        login:               coatezy
+        events_url:          https://api.github.com/users/coatezy/events{/privacy}
+        starred_url:         https://api.github.com/users/coatezy/starred{/owner}{/repo}
+        type:                User
+        avatar_url:          https://secure.gravatar.com/avatar/1cf2cb10c2243ffbb8c4965524e611ee?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png
+        subscriptions_url:   https://api.github.com/users/coatezy/subscriptions
+      created_at:          2013-01-11T16:30:56Z
+      id:                  3641899
+      merge_commit_sha:    d080696b5cf4d27e8e80015073f40a3e1b76d2d8
+      comments_url:        https://api.github.com/repos/simpleweb/dillocker/issues/132/comments
+      body:                * Removed zend form helper to add person.. Wrote custom form to allow better customisation.
+* Added Jquery to adjust add/edit person form based on selections
+* Added a method to get total employees and consultants
+* Removed view person button (commented out) from people page
+* Identified why reset password token was not being sent
+
+      issue_url:           https://github.com/simpleweb/dillocker/issues/132
+      additions:           395
+      changed_files:       19
+      url:                 https://api.github.com/repos/simpleweb/dillocker/pulls/132
+      _links: 
+        review_comments: 
+          href: https://api.github.com/repos/simpleweb/dillocker/pulls/132/comments
+        html: 
+          href: https://github.com/simpleweb/dillocker/pull/132
+        self: 
+          href: https://api.github.com/repos/simpleweb/dillocker/pulls/132
+        comments: 
+          href: https://api.github.com/repos/simpleweb/dillocker/issues/132/comments
+        issue: 
+          href: https://api.github.com/repos/simpleweb/dillocker/issues/132
+      review_comments_url: https://github.com/simpleweb/dillocker/pull/132/comments
+      merged_at:           2013-01-11T16:47:49Z
+      head: 
+        label: simpleweb:issues-10-01
+        user: 
+          gravatar_id:         6eacf2338c09b408ff78ed76abc0e6f0
+          followers_url:       https://api.github.com/users/simpleweb/followers
+          received_events_url: https://api.github.com/users/simpleweb/received_events
+          following_url:       https://api.github.com/users/simpleweb/following
+          id:                  255666
+          gists_url:           https://api.github.com/users/simpleweb/gists{/gist_id}
+          organizations_url:   https://api.github.com/users/simpleweb/orgs
+          repos_url:           https://api.github.com/users/simpleweb/repos
+          url:                 https://api.github.com/users/simpleweb
+          login:               simpleweb
+          events_url:          https://api.github.com/users/simpleweb/events{/privacy}
+          starred_url:         https://api.github.com/users/simpleweb/starred{/owner}{/repo}
+          type:                Organization
+          avatar_url:          https://secure.gravatar.com/avatar/6eacf2338c09b408ff78ed76abc0e6f0?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-org-420.png
+          subscriptions_url:   https://api.github.com/users/simpleweb/subscriptions
+        repo: 
+          owner: 
+            gravatar_id:         6eacf2338c09b408ff78ed76abc0e6f0
+            followers_url:       https://api.github.com/users/simpleweb/followers
+            received_events_url: https://api.github.com/users/simpleweb/received_events
+            following_url:       https://api.github.com/users/simpleweb/following
+            id:                  255666
+            gists_url:           https://api.github.com/users/simpleweb/gists{/gist_id}
+            organizations_url:   https://api.github.com/users/simpleweb/orgs
+            repos_url:           https://api.github.com/users/simpleweb/repos
+            url:                 https://api.github.com/users/simpleweb
+            login:               simpleweb
+            events_url:          https://api.github.com/users/simpleweb/events{/privacy}
+            starred_url:         https://api.github.com/users/simpleweb/starred{/owner}{/repo}
+            type:                Organization
+            avatar_url:          https://secure.gravatar.com/avatar/6eacf2338c09b408ff78ed76abc0e6f0?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-org-420.png
+            subscriptions_url:   https://api.github.com/users/simpleweb/subscriptions
+          git_commits_url:   https://api.github.com/repos/simpleweb/dillocker/git/commits{/sha}
+          teams_url:         https://api.github.com/repos/simpleweb/dillocker/teams
+          notifications_url: https://api.github.com/repos/simpleweb/dillocker/notifications{?since,all,participating}
+          git_refs_url:      https://api.github.com/repos/simpleweb/dillocker/git/refs{/sha}
+          labels_url:        https://api.github.com/repos/simpleweb/dillocker/labels{/name}
+          pushed_at:         2013-01-11T16:47:49Z
+          archive_url:       https://api.github.com/repos/simpleweb/dillocker/{archive_format}{/ref}
+          issues_url:        https://api.github.com/repos/simpleweb/dillocker/issues{/number}
+          has_issues:        true
+          trees_url:         https://api.github.com/repos/simpleweb/dillocker/git/trees{/sha}
+          stargazers_url:    https://api.github.com/repos/simpleweb/dillocker/stargazers
+          created_at:        2012-05-16T13:28:03Z
+          tags_url:          https://api.github.com/repos/simpleweb/dillocker/tags{/tag}
+          issue_comment_url: https://api.github.com/repos/simpleweb/dillocker/issues/comments/{number}
+          pulls_url:         https://api.github.com/repos/simpleweb/dillocker/pulls{/number}
+          id:                4347269
+          comments_url:      https://api.github.com/repos/simpleweb/dillocker/comments{/number}
+          collaborators_url: https://api.github.com/repos/simpleweb/dillocker/collaborators{/collaborator}
+          forks_count:       0
+          description:       Ready your company for sale.
+          language:          PHP
+          homepage:          null
+          name:              dillocker
+          forks_url:         https://api.github.com/repos/simpleweb/dillocker/forks
+          subscribers_url:   https://api.github.com/repos/simpleweb/dillocker/subscribers
+          has_wiki:          false
+          open_issues_count: 41
+          subscription_url:  https://api.github.com/repos/simpleweb/dillocker/subscription
+          url:               https://api.github.com/repos/simpleweb/dillocker
+          statuses_url:      https://api.github.com/repos/simpleweb/dillocker/statuses/{sha}
+          events_url:        https://api.github.com/repos/simpleweb/dillocker/events
+          contents_url:      https://api.github.com/repos/simpleweb/dillocker/contents/{+path}
+          blobs_url:         https://api.github.com/repos/simpleweb/dillocker/git/blobs{/sha}
+          languages_url:     https://api.github.com/repos/simpleweb/dillocker/languages
+          assignees_url:     https://api.github.com/repos/simpleweb/dillocker/assignees{/user}
+          contributors_url:  https://api.github.com/repos/simpleweb/dillocker/contributors
+          git_tags_url:      https://api.github.com/repos/simpleweb/dillocker/git/tags{/sha}
+          full_name:         simpleweb/dillocker
+          merges_url:        https://api.github.com/repos/simpleweb/dillocker/merges
+          watchers:          2
+          keys_url:          https://api.github.com/repos/simpleweb/dillocker/keys{/key_id}
+          svn_url:           https://github.com/simpleweb/dillocker
+          watchers_count:    2
+          has_downloads:     true
+          updated_at:        2013-01-11T16:47:49Z
+          milestones_url:    https://api.github.com/repos/simpleweb/dillocker/milestones{/number}
+          html_url:          https://github.com/simpleweb/dillocker
+          size:              19356
+          mirror_url:        null
+          downloads_url:     https://api.github.com/repos/simpleweb/dillocker/downloads
+          git_url:           git://github.com/simpleweb/dillocker.git
+          open_issues:       41
+          branches_url:      https://api.github.com/repos/simpleweb/dillocker/branches{/branch}
+          clone_url:         https://github.com/simpleweb/dillocker.git
+          hooks_url:         https://api.github.com/repos/simpleweb/dillocker/hooks
+          forks:             0
+          private:           true
+          fork:              false
+          compare_url:       https://api.github.com/repos/simpleweb/dillocker/compare/{base}...{head}
+          issue_events_url:  https://api.github.com/repos/simpleweb/dillocker/issues/events{/number}
+          ssh_url:           git@github.com:simpleweb/dillocker.git
+          commits_url:       https://api.github.com/repos/simpleweb/dillocker/commits{/sha}
+        sha:   6f75eb919f57230ba4de222681928c66ab7e3bd4
+        ref:   issues-10-01
+      comments:            2
+      base: 
+        label: simpleweb:master
+        user: 
+          gravatar_id:         6eacf2338c09b408ff78ed76abc0e6f0
+          followers_url:       https://api.github.com/users/simpleweb/followers
+          received_events_url: https://api.github.com/users/simpleweb/received_events
+          following_url:       https://api.github.com/users/simpleweb/following
+          id:                  255666
+          gists_url:           https://api.github.com/users/simpleweb/gists{/gist_id}
+          organizations_url:   https://api.github.com/users/simpleweb/orgs
+          repos_url:           https://api.github.com/users/simpleweb/repos
+          url:                 https://api.github.com/users/simpleweb
+          login:               simpleweb
+          events_url:          https://api.github.com/users/simpleweb/events{/privacy}
+          starred_url:         https://api.github.com/users/simpleweb/starred{/owner}{/repo}
+          type:                Organization
+          avatar_url:          https://secure.gravatar.com/avatar/6eacf2338c09b408ff78ed76abc0e6f0?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-org-420.png
+          subscriptions_url:   https://api.github.com/users/simpleweb/subscriptions
+        repo: 
+          owner: 
+            gravatar_id:         6eacf2338c09b408ff78ed76abc0e6f0
+            followers_url:       https://api.github.com/users/simpleweb/followers
+            received_events_url: https://api.github.com/users/simpleweb/received_events
+            following_url:       https://api.github.com/users/simpleweb/following
+            id:                  255666
+            gists_url:           https://api.github.com/users/simpleweb/gists{/gist_id}
+            organizations_url:   https://api.github.com/users/simpleweb/orgs
+            repos_url:           https://api.github.com/users/simpleweb/repos
+            url:                 https://api.github.com/users/simpleweb
+            login:               simpleweb
+            events_url:          https://api.github.com/users/simpleweb/events{/privacy}
+            starred_url:         https://api.github.com/users/simpleweb/starred{/owner}{/repo}
+            type:                Organization
+            avatar_url:          https://secure.gravatar.com/avatar/6eacf2338c09b408ff78ed76abc0e6f0?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-org-420.png
+            subscriptions_url:   https://api.github.com/users/simpleweb/subscriptions
+          git_commits_url:   https://api.github.com/repos/simpleweb/dillocker/git/commits{/sha}
+          teams_url:         https://api.github.com/repos/simpleweb/dillocker/teams
+          notifications_url: https://api.github.com/repos/simpleweb/dillocker/notifications{?since,all,participating}
+          git_refs_url:      https://api.github.com/repos/simpleweb/dillocker/git/refs{/sha}
+          labels_url:        https://api.github.com/repos/simpleweb/dillocker/labels{/name}
+          pushed_at:         2013-01-11T16:47:49Z
+          archive_url:       https://api.github.com/repos/simpleweb/dillocker/{archive_format}{/ref}
+          issues_url:        https://api.github.com/repos/simpleweb/dillocker/issues{/number}
+          has_issues:        true
+          trees_url:         https://api.github.com/repos/simpleweb/dillocker/git/trees{/sha}
+          stargazers_url:    https://api.github.com/repos/simpleweb/dillocker/stargazers
+          created_at:        2012-05-16T13:28:03Z
+          tags_url:          https://api.github.com/repos/simpleweb/dillocker/tags{/tag}
+          issue_comment_url: https://api.github.com/repos/simpleweb/dillocker/issues/comments/{number}
+          pulls_url:         https://api.github.com/repos/simpleweb/dillocker/pulls{/number}
+          id:                4347269
+          comments_url:      https://api.github.com/repos/simpleweb/dillocker/comments{/number}
+          collaborators_url: https://api.github.com/repos/simpleweb/dillocker/collaborators{/collaborator}
+          forks_count:       0
+          description:       Ready your company for sale.
+          language:          PHP
+          homepage:          null
+          name:              dillocker
+          forks_url:         https://api.github.com/repos/simpleweb/dillocker/forks
+          subscribers_url:   https://api.github.com/repos/simpleweb/dillocker/subscribers
+          has_wiki:          false
+          open_issues_count: 41
+          subscription_url:  https://api.github.com/repos/simpleweb/dillocker/subscription
+          url:               https://api.github.com/repos/simpleweb/dillocker
+          statuses_url:      https://api.github.com/repos/simpleweb/dillocker/statuses/{sha}
+          events_url:        https://api.github.com/repos/simpleweb/dillocker/events
+          contents_url:      https://api.github.com/repos/simpleweb/dillocker/contents/{+path}
+          blobs_url:         https://api.github.com/repos/simpleweb/dillocker/git/blobs{/sha}
+          languages_url:     https://api.github.com/repos/simpleweb/dillocker/languages
+          assignees_url:     https://api.github.com/repos/simpleweb/dillocker/assignees{/user}
+          contributors_url:  https://api.github.com/repos/simpleweb/dillocker/contributors
+          git_tags_url:      https://api.github.com/repos/simpleweb/dillocker/git/tags{/sha}
+          full_name:         simpleweb/dillocker
+          merges_url:        https://api.github.com/repos/simpleweb/dillocker/merges
+          watchers:          2
+          keys_url:          https://api.github.com/repos/simpleweb/dillocker/keys{/key_id}
+          svn_url:           https://github.com/simpleweb/dillocker
+          watchers_count:    2
+          has_downloads:     true
+          updated_at:        2013-01-11T16:47:49Z
+          milestones_url:    https://api.github.com/repos/simpleweb/dillocker/milestones{/number}
+          html_url:          https://github.com/simpleweb/dillocker
+          size:              19356
+          mirror_url:        null
+          downloads_url:     https://api.github.com/repos/simpleweb/dillocker/downloads
+          git_url:           git://github.com/simpleweb/dillocker.git
+          open_issues:       41
+          branches_url:      https://api.github.com/repos/simpleweb/dillocker/branches{/branch}
+          clone_url:         https://github.com/simpleweb/dillocker.git
+          hooks_url:         https://api.github.com/repos/simpleweb/dillocker/hooks
+          forks:             0
+          private:           true
+          fork:              false
+          compare_url:       https://api.github.com/repos/simpleweb/dillocker/compare/{base}...{head}
+          issue_events_url:  https://api.github.com/repos/simpleweb/dillocker/issues/events{/number}
+          ssh_url:           git@github.com:simpleweb/dillocker.git
+          commits_url:       https://api.github.com/repos/simpleweb/dillocker/commits{/sha}
+        sha:   bf35ffed55811546298c5bc1f274ad1f2bcf228b
+        ref:   master
+      review_comment_url:  /repos/simpleweb/dillocker/pulls/comments/{number}
+      mergeable_state:     unknown
+      state:               closed
+      updated_at:          2013-01-11T16:47:49Z
+      html_url:            https://github.com/simpleweb/dillocker/pull/132
+      merged:              true
+      milestone:           null
+      deletions:           60
+      user: 
+        gravatar_id:         1cf2cb10c2243ffbb8c4965524e611ee
+        followers_url:       https://api.github.com/users/coatezy/followers
+        received_events_url: https://api.github.com/users/coatezy/received_events
+        following_url:       https://api.github.com/users/coatezy/following
+        id:                  2954283
+        gists_url:           https://api.github.com/users/coatezy/gists{/gist_id}
+        organizations_url:   https://api.github.com/users/coatezy/orgs
+        repos_url:           https://api.github.com/users/coatezy/repos
+        url:                 https://api.github.com/users/coatezy
+        login:               coatezy
+        events_url:          https://api.github.com/users/coatezy/events{/privacy}
+        starred_url:         https://api.github.com/users/coatezy/starred{/owner}{/repo}
+        type:                User
+        avatar_url:          https://secure.gravatar.com/avatar/1cf2cb10c2243ffbb8c4965524e611ee?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png
+        subscriptions_url:   https://api.github.com/users/coatezy/subscriptions
+      diff_url:            https://github.com/simpleweb/dillocker/pull/132.diff
+      commits:             13
+      patch_url:           https://github.com/simpleweb/dillocker/pull/132.patch
+      mergeable:           null
+      commits_url:         https://github.com/simpleweb/dillocker/pull/132/commits
+    action:       closed
+  org: 
+    avatar_url:  https://secure.gravatar.com/avatar/6eacf2338c09b408ff78ed76abc0e6f0?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-org-420.png
+    gravatar_id: 6eacf2338c09b408ff78ed76abc0e6f0
+    id:          255666
+    login:       simpleweb
+    url:         https://api.github.com/orgs/simpleweb
+  public:     false
+  created_at: 2013-01-11T16:47:50Z
+  actor: 
+    avatar_url:  https://secure.gravatar.com/avatar/1cf2cb10c2243ffbb8c4965524e611ee?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png
+    gravatar_id: 1cf2cb10c2243ffbb8c4965524e611ee
+    id:          2954283
+    login:       coatezy
+    url:         https://api.github.com/users/coatezy
+  id:         1653831848
+  repo: 
+    id:   4347269
+    url:  https://api.github.com/repos/simpleweb/dillocker
+    name: simpleweb/dillocker

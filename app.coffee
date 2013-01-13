@@ -9,11 +9,23 @@ exec = require 'exec'
 # Arduino + required libs
 five = require './lib/johnny-five.js'
 
+# Other libs
+prompt = require 'prompt'
+prompt.start()
+
+fs = require 'fs'
+
 # Default Vars
 github = undefined
 lastTrackedEvent = undefined
 board = undefined
 servo = undefined
+auth = undefined
+queue = 0
+servoBusy = false
+red   = '\u001b[31m'
+blue  = '\u001b[34m'
+reset = '\u001b[0m'
 
 users = {
   "adambutler": "Adam Butler"
@@ -32,12 +44,13 @@ users = {
 # Settings
 settings = {
   printJSON: false
-  poll: 5000
+  poll: 0
   logLevel: 3
-  fake: true
+  fake: false
   method: 'timer' # photo | timer
-  servoTimeoutDefault: 1600
+  servoTimeoutDefault: 2000
   servoTimeoutIfMethodIsPhoto: 5000
+  servoEnabled: false
 }
 
 log = (msg, level = 1) ->
@@ -45,7 +58,10 @@ log = (msg, level = 1) ->
     console.log msg
 
 init = ->
-  initBoard()
+  if settings.servoEnabled
+    initBoard()
+  else
+    initGithub()
 
 initBoard = ->
   board = new five.Board()
@@ -75,21 +91,33 @@ setupServo = ->
 
   servo.stop()
 
+triggerServo = (extendQueue = true) ->
 
-  servo.on "move", (err, degrees) ->
-    #if degrees == 180
-      #servo.stop()
+  if extendQueue
+    log "#{blue}+1 Queue#{reset}", 2
+    queue++
 
-triggerServo = ->
-  servo.move(1)
+  if !servoBusy
 
-  timeout = settings.servoTimeoutDefault
-  if settings.method == 'photo'
-    timeout = settings.servoTimeoutIfMethodIsPhoto
+    servoBusy = true
 
-  setTimeout ->
-    servo.stop()
-  , timeout
+    log "#{red}Dispense M&M#{reset}", 1
+
+    servo.move(1) if settings.servoEnabled
+
+    timeout = settings.servoTimeoutDefault
+
+    if settings.method == 'photo'
+      timeout = settings.servoTimeoutIfMethodIsPhoto
+
+    setTimeout ->
+      queue--
+      servoBusy = false
+
+      servo.stop() if settings.servoEnabled
+
+      triggerServo(false) if queue != 0
+    , timeout
 
 initGithub = ->
   github = new GitHubApi
@@ -100,75 +128,111 @@ initGithub = ->
 
 githubAuth = ->
 
-  github.authenticate
-    type: 'oauth',
-    token: '' # oauth token required
+  fs.readFile 'auth', 'utf8', (err,data) ->
+    if err
+      console.log "\n\nYou have not authenticated yet:\n===============================\n\nYou will be asked once for your GitHub username and password.\nProviding this will allow the app to generate a OAuth token with permisions to access notifications only.\nThe token will be saved in the application directory, be careful not to check your token into source control.\n"
 
-  githubPoll()
+      prompt.get
+        properties:
+          username:
+            required: true
+            message: 'GitHub Username'
+          password:
+            required: true
+            hidden: true
+            message: 'GitHub Password'
+          org:
+            required: false
+            message: 'Organization (leave blank to track your own activity)'
+      , (err, result) ->
+        if err
+          console.log err
+        else
+          githubGenerateToken(result.username, result.password, result.org)
+    else
+      auth = JSON.parse(data)
 
-githubGenerateToken = ->
+      github.authenticate
+        type: 'oauth',
+        token: auth.token # oauth token required
+      
+      githubPoll()
+
+githubGenerateToken = (username, password, org) ->
 
   github.authenticate
     type: 'basic'
-    username: 'adambutler'
-    password: ''
+    username: username
+    password: password
 
   github.authorization.create
     note: 'GitHubApi M&M'
-    scopes: ['gist','user','public_repo','repo','repo:status','delete_repo','notifications']
+    scopes: ['repo']
   , (err, res) ->
-    console.log(prettyjson.render(res))
+    if err
+      console.log err
+    else
+      fs.writeFile(
+        'auth' 
+        ,"{ \"username\": \"#{username}\", \"org\": \"#{org}\", \"token\": \"#{res.token}\" }"
+        , (err) ->
+          if err
+            console.log err 
+          else
+            githubAuth()
+      )
 
 githubPoll = ->
 
-  log 'About to poll GitHub Events', 2
-
   if settings.fake
-    console.log 'fake'
-    triggerServo()
-    setTimeout githubPoll, settings.poll
+    fakePoll()
   else
+    log "Polling", 2
     github.events.getFromUserOrg
-      org: 'simpleweb'
-      user: 'adambutler'
+      org: auth.org
+      user: auth.username
       type: 'PushEvent'
     , (err, res) =>
 
       if err
         log "ERROR: #{err}", 1
-      else if res.message == "Server Error"
-        log "Server Error", 1
         setTimeout githubPoll, settings.poll
       else
-        newResults = false
+        handleResponse(res)
 
-        if settings.printJSON
-          console.log(prettyjson.render(res))
+getName = (username) ->
+  if users[username]?
+    return users[username]
+  else
+    return username
 
-        for ghevent in res
-          if ghevent.created_at == lastTrackedEvent
-            break
-          else
-            newResults = true
-            log "Checking new event #{ghevent.created_at}", 2
-            if ghevent.type == "PullRequestEvent" and ghevent.payload.action == "closed"
-              
-              log "A pull request was merged #{timeago(ghevent.created_at)} by #{ghevent.actor.login}", 1
-              
-              # Determine if this is the first run
-              if lastTrackedEvent?
-                #exec("say 'One M and M for #{users[ghevent.actor.login]}")
-                log "Dispense an M&M", 1
-                triggerServo()
-              else
-                log "Sorry no M&M for you, we're just booting up!"
+handleResponse = (events) ->
 
-        if !newResults
-          triggerServo()
-          log "No new events to test will poll again in #{settings.poll/1000} seconds", 2
+  console.log(prettyjson.render(events)) if settings.printJSON
 
-        lastTrackedEvent = res[0].created_at
+  if lastTrackedEvent == events[0].id
+    process.stdout.clearLine();
+    log "No new events will poll again in #{settings.poll/1000}s", 2
 
-        setTimeout githubPoll, settings.poll
+  else
+    for event in events
+      break if event.id == lastTrackedEvent
+      
+      log "Checking new event #{event.id}", 2
+      
+      if event.type == "PullRequestEvent" and event.payload.action == "closed" and event.payload.pull_request.base.ref == "master"
+        
+        log "A pull request was merged #{timeago(event.created_at)} by #{getName(event.actor.login)}", 1
+
+        triggerServo()
+
+  lastTrackedEvent = events[0].id
+
+  setTimeout githubPoll, settings.poll
+
+fakePoll = ->
+  console.log 'Warning: In fake mode'
+  triggerServo()
+  setTimeout githubPoll, settings.poll
 
 init()
