@@ -44,13 +44,13 @@ users = {
 # Settings
 settings = {
   printJSON: false
-  poll: 0
+  poll: 3000
   logLevel: 3
   fake: false
   method: 'timer' # photo | timer
-  servoTimeoutDefault: 2000
+  servoTimeoutDefault: 1100
   servoTimeoutIfMethodIsPhoto: 5000
-  servoEnabled: false
+  servoEnabled: true
 }
 
 log = (msg, level = 1) ->
@@ -103,7 +103,7 @@ triggerServo = (extendQueue = true) ->
 
     log "#{red}Dispense M&M#{reset}", 1
 
-    servo.move(1) if settings.servoEnabled
+    servo.move(180) if settings.servoEnabled
 
     timeout = settings.servoTimeoutDefault
 
