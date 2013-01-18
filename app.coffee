@@ -3,8 +3,6 @@
 GitHubApi = require 'github'
 prettyjson = require 'prettyjson'
 timeago = require 'timeago'
-sys = require 'sys'
-exec = require 'exec'
 
 # Arduino + required libs
 five = require './lib/johnny-five.js'
@@ -44,11 +42,11 @@ users = {
 # Settings
 settings = {
   printJSON: false
-  poll: 3000
+  poll: 12000
   logLevel: 3
   fake: false
   method: 'timer' # photo | timer
-  servoTimeoutDefault: 1100
+  servoTimeoutDefault: 1400
   servoTimeoutIfMethodIsPhoto: 5000
   servoEnabled: true
 }
@@ -155,7 +153,7 @@ githubAuth = ->
       github.authenticate
         type: 'oauth',
         token: auth.token # oauth token required
-      
+
       githubPoll()
 
 githubGenerateToken = (username, password, org) ->
@@ -173,11 +171,11 @@ githubGenerateToken = (username, password, org) ->
       console.log err
     else
       fs.writeFile(
-        'auth' 
+        'auth'
         ,"{ \"username\": \"#{username}\", \"org\": \"#{org}\", \"token\": \"#{res.token}\" }"
         , (err) ->
           if err
-            console.log err 
+            console.log err
           else
             githubAuth()
       )
@@ -211,17 +209,16 @@ handleResponse = (events) ->
   console.log(prettyjson.render(events)) if settings.printJSON
 
   if lastTrackedEvent == events[0].id
-    process.stdout.clearLine();
     log "No new events will poll again in #{settings.poll/1000}s", 2
 
   else
     for event in events
       break if event.id == lastTrackedEvent
-      
+
       log "Checking new event #{event.id}", 2
-      
+
       if event.type == "PullRequestEvent" and event.payload.action == "closed" and event.payload.pull_request.base.ref == "master"
-        
+
         log "A pull request was merged #{timeago(event.created_at)} by #{getName(event.actor.login)}", 1
 
         triggerServo()
