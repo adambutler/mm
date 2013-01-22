@@ -93,6 +93,8 @@ setupTwillio = function() {
     } else {
       twillio = JSON.parse(data);
       cli = new twilioAPI.Client(twillio.twillioID, twillio.twillioToken);
+      app.use(cli.middleware());
+      app.listen(1337);
       return cli.account.getApplication('APfcc463968ea11abfbcf4756dbdfc563b', function(err, app) {
         app.register();
         app.on("incomingSMSMessage", function(sms) {

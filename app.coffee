@@ -71,6 +71,8 @@ setupTwillio = ->
     else
       twillio = JSON.parse(data)
       cli = new twilioAPI.Client(twillio.twillioID, twillio.twillioToken)
+      app.use cli.middleware()
+      app.listen 1337
       cli.account.getApplication 'APfcc463968ea11abfbcf4756dbdfc563b', (err, app) ->
         app.register()
         app.on "incomingSMSMessage", (sms) ->
