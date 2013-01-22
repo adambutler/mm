@@ -13,12 +13,12 @@ app.use(cli.middleware());
 
 app.listen(1337);
 
-cli.account.getApplication('APfcc463968ea11abfbcf4756dbdfc563b', function(err, app) {
+cli.account.getApplication('APfcc463968ea11abfbcf4756dbdfc563b', function(err, res) {
   if (err) {
     throw err;
   }
-  app.register();
-  return app.on("incomingSMSMessage", function(sms) {
+  res.register();
+  return res.on("incomingSMSMessage", function(sms) {
     return console.log(sms.Body);
   });
 });

@@ -8,8 +8,8 @@ app.use cli.middleware()
 app.listen 1337
 
 #Get a Twilio application and register it
-cli.account.getApplication 'APfcc463968ea11abfbcf4756dbdfc563b', (err, app) ->
+cli.account.getApplication 'APfcc463968ea11abfbcf4756dbdfc563b', (err, res) ->
   throw err  if err
-  app.register()
-  app.on "incomingSMSMessage", (sms) ->
+  res.register()
+  res.on "incomingSMSMessage", (sms) ->
     console.log sms.Body
