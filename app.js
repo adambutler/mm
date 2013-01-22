@@ -17,7 +17,11 @@ app = express();
 
 twilioAPI = require("twilio-api");
 
-cli = void 0;
+cli = new twilioAPI.Client('ACf39e1b04d08f9909f36742fa6eacefbc', 'd95dbd5ac2495abcb055783cede32837');
+
+app.use(cli.middleware());
+
+app.listen(1337);
 
 five = require('./lib/johnny-five.js');
 
@@ -86,28 +90,17 @@ init = function() {
 };
 
 setupTwillio = function() {
-  return fs.readFile('auth', 'utf8', function(err, data) {
-    var twillio;
-    if (err) {
-      return console.log(err);
-    } else {
-      twillio = JSON.parse(data);
-      cli = new twilioAPI.Client(twillio.twillioID, twillio.twillioToken);
-      app.use(cli.middleware());
-      app.listen(1337);
-      return cli.account.getApplication(twillio.twillioApp, function(err, app) {
-        app.register();
-        app.on("incomingSMSMessage", function(sms) {
-          console.log('Got SMS');
-          return triggerServo();
-        });
-        if (settings.servoEnabled) {
-          return initBoard();
-        } else {
-          return initGithub();
-        }
-      });
-    }
+  return cli.account.getApplication('APfcc463968ea11abfbcf4756dbdfc563b', function(err, app) {
+    app.register();
+    return app.on("incomingSMSMessage", function(sms) {
+      console.log('Got SMS');
+      triggerServo();
+      if (settings.servoEnabled) {
+        return initBoard();
+      } else {
+        return initGithub();
+      }
+    });
   });
 };
 

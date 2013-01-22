@@ -74,7 +74,8 @@ setupTwillio = ->
     app.register()
     app.on "incomingSMSMessage", (sms) ->
       console.log 'Got SMS'
-        triggerServo()
+      triggerServo()
+      
       if settings.servoEnabled
         initBoard()
       else
