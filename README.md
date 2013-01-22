@@ -21,4 +21,4 @@ Idea by [Mark Smith](http://github.com/markjs)
 
 M&M dispenser kindly donated by [Chris Mytton](http://github.com/hecticjeff)
 
-Built at [SimpleWeb HQ](http://twitter.com/simplwebhq)
+Built at [Simpleweb HQ](http://github.com/simpleweb)
