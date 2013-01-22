@@ -5,6 +5,10 @@ prettyjson = require 'prettyjson'
 timeago = require 'timeago'
 sys = require 'sys'
 exec = require 'exec'
+express = require("express")
+app = express()
+twilioAPI = require("twilio-api")
+cli = undefined
 
 # Arduino + required libs
 five = require './lib/johnny-five.js'
@@ -58,10 +62,24 @@ log = (msg, level = 1) ->
     console.log msg
 
 init = ->
-  if settings.servoEnabled
-    initBoard()
-  else
-    initGithub()
+  setupTwillio()
+
+setupTwillio = ->
+  fs.readFile 'auth', 'utf8', (err,data) ->
+    if err
+      console.log err
+    else
+      twillio = JSON.parse(data)
+      cli = new twilioAPI.Client(twillio.twillioID, twillio.twillioToken)
+      cli.account.getApplication 'APfcc463968ea11abfbcf4756dbdfc563b', (err, app) ->
+        app.register()
+        app.on "incomingSMSMessage", (sms) ->
+          console.log 'Got SMS'
+          triggerServo()
+        if settings.servoEnabled
+          initBoard()
+        else
+          initGithub()
 
 initBoard = ->
   board = new five.Board()
